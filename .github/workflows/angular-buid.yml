@@ -1,0 +1,68 @@
+name: angular
+
+on:
+  workflow_call:
+    inputs:
+      node:
+        description: 'Node version'
+        default: '16'
+        required: false
+        type: string  
+
+jobs:
+  npm:
+    name: npm build and test
+    runs-on: ubuntu-latest
+    steps:
+    # install samo tool
+    - uses: lorislab/install-samo-action@v1
+    # checkout the project    
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    # setup node.js
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node }}
+        cache: 'npm'   
+    # login to github docker registry in the organization
+    - uses: docker/login-action@v2
+      with:
+        registry: ${{ env.QUARKUS_CONTAINER_IMAGE_REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    # update project version    
+    - name: Set project version
+      run: |
+        VERSION=$(samo project version)
+        npm version $VERSION
+    # Check the project        
+    - name: Check project
+      run: npm run lint
+    # Build the project
+    - name: Build project
+      run: npm run build
+    # Test the project     
+    - name: Test project
+      run: npm run test:ci
+    # store github action pr number to file  
+    - name: Create sonar json file
+      if: github.event_name == 'pull_request'
+      run: echo ${{ github.event.number }} > github-action-pr.txt       
+    # upload github action pr number
+    - uses: actions/upload-artifact@v3
+      if: github.event_name == 'pull_request'
+      with:
+        name: github-action-pr
+        path: github-action-pr.txt
+    # upload target for next jobs               
+    - uses: actions/upload-artifact@v3
+      with:
+        name: package
+        path: |
+            package.json      
+            dist/
+            coverage/
+        retention-days: 1
+        if-no-files-found: ignore

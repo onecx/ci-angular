@@ -1,0 +1,62 @@
+name: sonar
+
+on:
+  workflow_call:
+    inputs:
+      node:
+        description: 'Node version'
+        default: '16'
+        required: false
+        type: string
+      artifact:
+        description: 'Name of the artifact for the build'
+        default: 'package'
+        required: false
+        type: string   
+      artifactPath:
+        description: 'Artifact path'
+        default: '.'
+        required: false
+        type: string
+
+jobs:
+  sonar:
+    name: sonar qa
+    runs-on: ubuntu-latest
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'    
+    steps:
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          run_id: ${{ github.event.workflow_run.id }}
+          name: github-action-pr
+      - uses: juliangruber/read-file-action@v1
+        id: pr_number
+        with:
+          path: ./github-action-pr.txt
+      - uses: octokit/request-action@v2.x
+        id: get_pr_data
+        with:
+          route: GET /repos/${{ github.event.repository.full_name }}/pulls/${{ steps.pr_number.outputs.content }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
+      - uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.workflow_run.head_repository.full_name }}
+          ref: ${{ github.event.workflow_run.head_branch }}
+          fetch-depth: 0
+      - name: Checkout base branch
+        run: |
+          git remote add upstream ${{ github.event.repository.clone_url }}
+          git fetch upstream
+          git checkout -B ${{ fromJson(steps.get_pr_data.outputs.data).base.ref }} upstream/${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}
+          git checkout ${{ github.event.workflow_run.head_branch }}
+          git clean -ffdx && git reset --hard HEAD
+      - uses: dawidd6/action-download-artifact@v2
+        with:
+          run_id: ${{ github.event.workflow_run.id }}
+          name: ${{ inputs.artifact }}      
+          path: ${{ inputs.artifactPath }}
+      - name: Sonar publish analyze
+        run: echo "TODO!!!"

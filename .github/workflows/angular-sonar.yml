@@ -1,0 +1,42 @@
+name: sonar
+
+on:
+  workflow_call:
+    inputs:
+      node:
+        description: 'Node version'
+        default: '16'
+        required: false
+        type: string  
+      artifact:
+        description: 'Name of the artifact for the build'
+        default: 'package'
+        required: false
+        type: string   
+      artifactPath:
+        description: 'Artifact path'
+        default: '.'
+        required: false
+        type: string
+
+jobs:
+  sonar:
+    name: sonar qa
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      # setup node.js
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node }}
+          cache: 'npm'        
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact }}
+          path: ${{ inputs.artifactPath }}
+      - name: Sonar publish analyze
+        run: echo "TODO!!!"
+        
