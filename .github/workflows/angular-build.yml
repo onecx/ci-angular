@@ -53,7 +53,7 @@ jobs:
     - name: Set project version
       run: |
         VERSION=$(samo project version)
-        npm version $VERSION
+        npm version --no-git-tag-version $VERSION
     # Check the project        
     - name: Check project
       run: npm run lint
