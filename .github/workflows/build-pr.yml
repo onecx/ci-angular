@@ -23,3 +23,6 @@ jobs:
     uses: onecx/ci-common/.github/workflows/helm-build.yml@v1
     needs: angular
     secrets: inherit
+    with:
+      helmSourceDir: 'helm'
+      helmSourceCopy: true
