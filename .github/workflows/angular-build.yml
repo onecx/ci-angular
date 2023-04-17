@@ -53,10 +53,12 @@ jobs:
     - name: Set project version
       run: |
         VERSION=$(samo project version)
-        npm version --no-git-tag-version $VERSION
+        npm version --no-git-tag-version $VERSION    
+    - name: Dependencies
+      run: npm install
     # Check the project        
     - name: Check project
-      run: npm run lint
+      run: npm run lint    
     # Build the project
     - name: Build project
       run: npm run build
