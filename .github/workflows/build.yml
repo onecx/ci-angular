@@ -19,11 +19,11 @@ jobs:
       samoDockerFile: Dockerfile
   sonar:
     uses: onecx/ci-angular/.github/workflows/angular-sonar.yml@v1
-    needs: angular
+    needs: docker
     secrets: inherit
   helm:
     uses: onecx/ci-common/.github/workflows/helm-build.yml@v1
-    needs: angular
+    needs: docker
     secrets: inherit
     with:
       push: true
