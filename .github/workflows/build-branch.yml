@@ -15,6 +15,7 @@ jobs:
     needs: angular
     secrets: inherit
     with:
+      tags: '{{ .Branch }}'
       samoDockerFile: Dockerfile
   helm:
     uses: onecx/ci-common/.github/workflows/helm-build.yml@v1

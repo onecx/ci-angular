@@ -15,6 +15,7 @@ jobs:
     needs: angular
     secrets: inherit
     with:
+      tags: '{{ .Version }},{{ .Branch }}'
       push: true
       samoDockerFile: Dockerfile
   sonar:
