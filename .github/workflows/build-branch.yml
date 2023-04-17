@@ -1,0 +1,22 @@
+name: branch
+
+on:
+  workflow_call:
+
+jobs:
+  code-ql:
+    uses: onecx/ci-angular/.github/workflows/angular-codeql.yml@v1
+    secrets: inherit
+  angular:
+    uses: onecx/ci-angular/.github/workflows/angular-build.yml@v1
+    secrets: inherit
+  docker:
+    uses: onecx/ci-common/.github/workflows/docker-build.yml@v1
+    needs: angular
+    secrets: inherit
+    with:
+      samoDockerFile: Dockerfile
+  helm:
+    uses: onecx/ci-common/.github/workflows/helm-build.yml@v1
+    needs: docker
+    secrets: inherit

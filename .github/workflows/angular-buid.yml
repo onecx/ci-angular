@@ -8,14 +8,31 @@ on:
         default: '16'
         required: false
         type: string  
+      push:
+        description: 'Push docker image'
+        default: false
+        required: false
+        type: boolean
+      tags:
+        description: 'Docker image tags'
+        default: '{{ .Version}},{{ .Branch }}'
+        required: false
+        type: string  
 
 jobs:
   npm:
     name: npm build and test
     runs-on: ubuntu-latest
+    env:
+      QUARKUS_CONTAINER_IMAGE_REGISTRY: 'ghcr.io'
+      QUARKUS_CONTAINER_IMAGE_GROUP: ${{ github.repository_owner }}
+      QUARKUS_CONTAINER_IMAGE_BUILD: 'true'
+      QUARKUS_CONTAINER_IMAGE_PUSH: ${{ inputs.push }}
+      SAMO_DOCKER_TAG_TEMPLATE_LIST: ${{ inputs.tags }}
+      SAMO_CONVENTIONAL_COMMITS: 'true'
     steps:
     # install samo tool
-    - uses: lorislab/install-samo-action@v1
+    - uses: lorislab/install-samo-action@v2
     # checkout the project    
     - uses: actions/checkout@v3
       with:
