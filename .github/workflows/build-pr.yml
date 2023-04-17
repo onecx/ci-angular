@@ -24,5 +24,4 @@ jobs:
     needs: docker
     secrets: inherit
     with:
-      helmSourceDir: 'helm'
-      helmSourceCopy: true
+      helmDir: 'helm'

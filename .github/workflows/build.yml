@@ -28,5 +28,5 @@ jobs:
     secrets: inherit
     with:
       push: true
-      helmSourceDir: 'helm'
-      helmSourceCopy: true
+      helmDir: 'helm'
+      
