@@ -75,4 +75,4 @@ jobs:
           OPS="$OPS -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }}"
           OPS="$OPS -Dsonar.pullrequest.branch=${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}"
           OPS="$OPS -Dsonar.pullrequest.base=${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}"          
-          npx sonarqube-scanner -- $OPS -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          npx sonarqube-scanner $OPS -Dsonar.login=${{ secrets.SONAR_TOKEN }}
