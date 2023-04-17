@@ -73,7 +73,7 @@ jobs:
       with:
         name: github-action-pr
         path: github-action-pr.txt
-    # upload target for next jobs               
+    # upload target for next jobs
     - uses: actions/upload-artifact@v3
       with:
         name: package
