@@ -71,7 +71,6 @@ jobs:
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./coverage/sonarqube_report.xml"
           OPS="$OPS -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}"
-          OPS="$OPS -Dsonar.coverage.jacoco.xmlReportPaths=./jacoco-report/jacoco.xml"
           OPS="$OPS -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }}"
           OPS="$OPS -Dsonar.pullrequest.branch=${{ fromJson(steps.get_pr_data.outputs.data).head.ref }}"
           OPS="$OPS -Dsonar.pullrequest.base=${{ fromJson(steps.get_pr_data.outputs.data).base.ref }}"
