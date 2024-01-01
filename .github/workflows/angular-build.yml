@@ -82,6 +82,6 @@ jobs:
         path: |
             package.json      
             dist/
-            coverage/
+            reports/
         retention-days: 1
         if-no-files-found: ignore
