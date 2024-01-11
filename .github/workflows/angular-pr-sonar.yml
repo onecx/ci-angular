@@ -68,7 +68,7 @@ jobs:
           OPS="-Dsonar.projectKey=$SONAR_KEY"
           OPS="$OPS -Dsonar.host.url=$SONAR_URL"
           OPS="$OPS -Dsonar.organization=${{ github.repository_owner }}"
-          OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/lcov.info"
+          OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
           OPS="$OPS -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}"
           OPS="$OPS -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }}"
