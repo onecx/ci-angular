@@ -49,5 +49,5 @@ jobs:
           OPS="$OPS -Dsonar.organization=${{ github.repository_owner }}"
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
-          OPS="$OPS -Dsonar.sourceEncoding=UTF-8
+          OPS="$OPS -Dsonar.sourceEncoding=UTF-8"
           npx sonarqube-scanner $OPS -Dsonar.token=${{ secrets.SONAR_TOKEN }}
