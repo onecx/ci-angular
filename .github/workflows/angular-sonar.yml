@@ -47,7 +47,7 @@ jobs:
           OPS="-Dsonar.projectKey=$SONAR_KEY"
           OPS="$OPS -Dsonar.host.url=$SONAR_URL"
           OPS="$OPS -Dsonar.organization=${{ github.repository_owner }}"
-          OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/lcov.info"
+          OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
           npx sonarqube-scanner $OPS -Dsonar.token=${{ secrets.SONAR_TOKEN }}
 
