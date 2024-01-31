@@ -71,7 +71,7 @@ jobs:
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
           OPS="$OPS -Dsonar.sourceEncoding=UTF-8"
-          OPS="$OPS -Dsonar.exclusions=src/app/generated/**/*"
+          OPS="$OPS -Dsonar.exclusions=src/app/shared/generated/**/*,src/app/generated/**/*"
           OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*,src/app/generated/**/*,src/app/test/**/*"
           OPS="$OPS -Dsonar.test.inclusions=src/app/**/*.spec.ts"
           OPS="$OPS -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}"
