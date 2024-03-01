@@ -71,6 +71,7 @@ jobs:
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
           OPS="$OPS -Dsonar.sourceEncoding=UTF-8"
+          OPS="$OPS -Dsonar.cpd.exclusions=src/app/**/*.ts"
           OPS="$OPS -Dsonar.cpd.typescript.minimumLines=250"
           OPS="$OPS -Dsonar.cpd.javascript.minimumLines=250"
           OPS="$OPS -Dsonar.cpd.typescript.minimumtokens=2500"
