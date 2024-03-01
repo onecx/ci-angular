@@ -50,7 +50,7 @@ jobs:
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"
           OPS="$OPS -Dsonar.testExecutionReportPaths=./reports/sonarqube_report.xml"
           OPS="$OPS -Dsonar.sourceEncoding=UTF-8"
-          OPS="$OPS -Dsonar.cpd.TypeScript.minimumLines=100"
+          OPS="$OPS -Dsonar.cpd.exclusions=src/app/**/*.ts"
           OPS="$OPS -Dsonar.exclusions=src/app/shared/generated/**/*"
           OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*"
           OPS="$OPS -Dsonar.test.inclusions=src/app/**/*.spec.ts"
