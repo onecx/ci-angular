@@ -55,7 +55,7 @@ jobs:
         VERSION=$(samo project version)
         npm version --no-git-tag-version $VERSION    
     - name: Dependencies
-      run: npm install
+      run: npm ci
     # Check the project        
     - name: Check project
       run: npm run lint    
