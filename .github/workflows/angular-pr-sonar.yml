@@ -79,7 +79,7 @@ jobs:
           OPS="$OPS -Dsonar.cpd.typescript.minimumtokens=2500"
           OPS="$OPS -Dsonar.cpd.javascript.minimumtokens=2500"
           OPS="$OPS -Dsonar.exclusions=src/app/shared/generated/**/*"
-          OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*"
+          OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/**/*.main.ts,src/**/*.bootstrap.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*"
           OPS="$OPS -Dsonar.test.inclusions=src/app/**/*.spec.ts"
           OPS="$OPS -Dsonar.scm.revision=${{ github.event.workflow_run.head_sha }}"
           OPS="$OPS -Dsonar.pullrequest.key=${{ fromJson(steps.get_pr_data.outputs.data).number }}"
