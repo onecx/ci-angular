@@ -7,6 +7,8 @@ jobs:
   dependency-review:
     uses: onecx/ci-common/.github/workflows/dependency-review.yml@v1
     secrets: inherit
+    with:
+      failOnSeverity: 'low'
   code-ql:
     uses: onecx/ci-angular/.github/workflows/angular-codeql.yml@v1
     secrets: inherit
