@@ -73,11 +73,11 @@ jobs:
           OPS="$OPS -Dsonar.javascript.lcov.reportPaths=./reports/coverage/lcov.info"          
           OPS="$OPS -Dsonar.javascript.maximumFunctionParameters=10"
           OPS="$OPS -Dsonar.typescript.maximumFunctionParameters=10"
-          OPS="$OPS -Dsonar.cpd.exclusions=src/app/**/*.ts"
           OPS="$OPS -Dsonar.cpd.typescript.minimumLines=250"
           OPS="$OPS -Dsonar.cpd.javascript.minimumLines=250"
           OPS="$OPS -Dsonar.cpd.typescript.minimumtokens=2500"
           OPS="$OPS -Dsonar.cpd.javascript.minimumtokens=2500"
+          OPS="$OPS -Dsonar.cpd.exclusions=src/**/*.ts"
           OPS="$OPS -Dsonar.exclusions=src/app/shared/generated/**/*"
           OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/**/*.main.ts,src/**/*.bootstrap.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*",pre_loaders/**/*,src/scope-polyfill/*
           OPS="$OPS -Dsonar.test.inclusions=src/**/*.spec.ts"
