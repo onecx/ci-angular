@@ -55,7 +55,7 @@ jobs:
           OPS="$OPS -Dsonar.cdp.javascript.maximumFunctionParameters=10"
           OPS="$OPS -Dsonar.cdp.typescript.maximumFunctionParameters=10"
           OPS="$OPS -Dsonar.javascript.exclusions=src/app/shared/generated/**/*"
-          OPS="$OPS -Dsonar.cpd.exclusions=src/app/**/*.ts"
+          OPS="$OPS -Dsonar.cpd.exclusions=src/**/*.ts"
           OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/**/*.main.ts,src/**/*.bootstrap.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*",pre_loaders/**/*,src/scope-polyfill/*
-          OPS="$OPS -Dsonar.test.inclusions=src/app/**/*.spec.ts"
+          OPS="$OPS -Dsonar.test.inclusions=src/**/*.spec.ts"
           npx sonarqube-scanner $OPS -Dsonar.token=${{ secrets.SONAR_TOKEN }}
