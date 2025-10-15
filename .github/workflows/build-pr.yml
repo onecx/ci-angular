@@ -2,6 +2,12 @@ name: pr
 
 on:
   workflow_call:
+    inputs:  
+      autoMerge:
+        description: 'Auto merge pr'
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   dependency-review:
@@ -20,10 +26,16 @@ jobs:
     needs: angular
     secrets: inherit
     with:
-      samoDockerFile: Dockerfile    
+      samoDockerFile: Dockerfile
   helm:
     uses: onecx/ci-common/.github/workflows/helm-build.yml@v1
     needs: docker
     secrets: inherit
     with:
       helmDir: 'helm'
+  auto-merge:
+    if: |
+      !cancelled() && needs.helm.result == 'success' && inputs.autoMerge
+    uses: onecx/ci-angular/.github/workflows/angular-pr-auto-merge.yml@d1
+    needs: [helm]
+    secrets: inherit
