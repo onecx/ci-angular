@@ -36,6 +36,6 @@ jobs:
   auto-merge:
     if: |
       !cancelled() && needs.helm.result == 'success' && inputs.autoMerge
-    uses: onecx/ci-angular/.github/workflows/angular-pr-auto-merge.yml@d1
+    uses: onecx/ci-angular/.github/workflows/angular-pr-auto-merge.yml@v1
     needs: [helm]
     secrets: inherit
