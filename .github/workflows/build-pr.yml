@@ -2,12 +2,6 @@ name: pr
 
 on:
   workflow_call:
-    inputs:  
-      autoMerge:
-        description: 'Auto merge pr'
-        default: true
-        required: false
-        type: boolean
 
 jobs:
   dependency-review:
@@ -33,9 +27,3 @@ jobs:
     secrets: inherit
     with:
       helmDir: 'helm'
-  auto-merge:
-    if: |
-      !cancelled() && needs.helm.result == 'success' && inputs.autoMerge
-    uses: onecx/ci-angular/.github/workflows/angular-pr-auto-merge.yml@v1
-    needs: [helm]
-    secrets: inherit
