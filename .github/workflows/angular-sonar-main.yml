@@ -7,16 +7,6 @@ on:
         description: 'Node version'
         default: '20'
         required: false
-        type: string  
-      artifact:
-        description: 'Name of the artifact for the build'
-        default: 'package'
-        required: false
-        type: string   
-      artifactPath:
-        description: 'Artifact path'
-        default: '.'
-        required: false
         type: string
 
 jobs:
@@ -24,15 +14,19 @@ jobs:
     name: sonar qa
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      # setup node.js
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ inputs.node }}
           cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Tests with Coverage + Sonar XML report
+        run: npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
       - name: Sonar publish analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
