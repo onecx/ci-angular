@@ -25,6 +25,8 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Test Failures
+        run: exit 1
       - name: Run Tests with Coverage + Sonar XML report
         run: npm test -- --watch=false --browsers=ChromeHeadless --code-coverage
       - name: Sonar publish analyze
