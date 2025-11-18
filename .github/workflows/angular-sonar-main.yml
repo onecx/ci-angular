@@ -11,7 +11,7 @@ on:
 
 jobs:
   sonar:
-    name: sonar qa
+    name: sonar main qa
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
