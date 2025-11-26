@@ -8,6 +8,11 @@ on:
         default: ''
         required: false
         type: string
+      helmEventTargetBranch:
+        description: 'Target branch'
+        default: 'main'
+        required: false
+        type: string
         
 jobs:
   codeql:
@@ -44,4 +49,5 @@ jobs:
     secrets: inherit
     with:
       targetRepository: ${{ inputs.helmEventTargetRepository }}
+      targetBranch: ${{ inputs.helmEventTargetBranch }}
       
