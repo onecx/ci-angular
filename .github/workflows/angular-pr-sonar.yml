@@ -76,10 +76,10 @@ jobs:
           OPS="$OPS -Dsonar.javascript.maximumFunctionParameters=10"
           OPS="$OPS -Dsonar.cpd.javascript.minimumLines=250"
           OPS="$OPS -Dsonar.cpd.javascript.minimumtokens=2500"
-          OPS="$OPS -Dsonar.cpd.exclusions=src/**/*.ts,src/**/*.html"
+          OPS="$OPS -Dsonar.cpd.exclusions=src/**/*.ts,src/**/*.html,libs/**/generated/**/*"
           OPS="$OPS -Dsonar.exclusions=src/app/shared/generated/**/*,pre_loaders/**/*,src/scope-polyfill/*,libs/**/generated/**/*"
-          OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/**/*.main.ts,src/**/*.bootstrap.ts,src/**/*.harness.ts,src/environments/*,src/assets/**/*,src/app/shared/generated/**/*",pre_loaders/**/*,src/scope-polyfill/*,libs/**/generated/**/*
-          OPS="$OPS -Dsonar.test.inclusions=src/**/*.spec.ts,libs/**/generated/**/*.spec.ts"
+          OPS="$OPS -Dsonar.coverage.exclusions=*.ts,*.js,src/*.ts,src/**/*.module.ts,src/**/*.main.ts,src/**/*.bootstrap.ts,src/**/*.harness.ts,src/environments/*,src/assets/**/*,src/**/generated/**/*",libs/**/generated/**/*,pre_loaders/**/*,src/scope-polyfill/*"
+          OPS="$OPS -Dsonar.test.inclusions=src/**/*.spec.ts,libs/**/*.spec.ts"
           OPS="$OPS -Dsonar.issue.ignore.multicriteria=e1,e2"
           OPS="$OPS -Dsonar.issue.ignore.multicriteria.e1.ruleKey=typescript:S7059"
           OPS="$OPS -Dsonar.issue.ignore.multicriteria.e1.resourceKey=**/*.ts"
